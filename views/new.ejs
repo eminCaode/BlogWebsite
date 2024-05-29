@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= heading %></title>
+    <link rel="stylesheet" href="/styles/pages.css">
+</head>
+<body>
+        <div class="container newPage">
+            <h1><%=heading  %></h1>
+            <% if (locals.blog) { %>
+                <form action="/api/blogs/edit/:id" class="editForm" id="editForm" method="post">
+                    <div class="row">
+                        <label for="title">Title: </label>
+                        <input name="title" type="text" value="<%= blog.title %>" required>
+                    </div>
+                    <div class="row textareaRow">
+                        <label for="content">Content: </label>
+                        <textarea name="content"  rows="11" cols="40" required ><%= blog.content %> </textarea>
+                    </div>
+                    <div class="row">
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" value="<%= blog.author %>" required>
+                    </div>
+                    <input type="submit" value="Update">
+                </form>
+    
+            <% }else{ %>
+            <form action="/api/blogs" class="newForm" id="newForm" method="post">
+                <div class="row">
+                    <label for="title">Title: </label>
+                    <input name="title" type="text" placeholder="Title" required>
+                </div>
+                <div class="row textareaRow">
+                    <label for="content">Content: </label>
+                    <textarea name="content"  rows="11" placeholder="Content" cols="40" required > </textarea>
+                </div>
+                <div class="row">
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" placeholder="Author" required>
+                </div>
+                
+                <button type="submit">Create</button>
+            </form>
+            <% } %>
+        </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emin's Blog Page</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+        <div class="firstPage">
+        <div class="container leftSection">
+            <h1>Write Your Own Blog</h1>
+            <ul>
+                <li>Tickle the create button.</li>
+                <li>Fill information in the blank.</li>
+                <li>Write a comment what any topic you want.</li>
+                <li>Share the blog to the people.</li>
+            </ul>
+            <form action="/new" method="GET">
+                <input type="submit" value="Create">
+            </form>
+            
+        </div>
+        <div class="container rightSection">
+           
+            <div class="row">
+                <h1>Last Articles</h1>
+            </div>
+            <div class="row">
+                <ul>
+                    <% blogs.forEach((blog)=>{ %>
+                   <li>
+                        <%= blog.title  %>
+                        <hr>
+                    <% }) %>
+                    
+                   </li>
+                   
+                </ul>
+    
+            </div>
+           
+        </div>
+
+    </div>
+
+        <div class="thirdsBody">
+
+       
+        <div class="container thirdSection col-xl-8">
+           
+            <ul id="blogsList">
+                <div class="forGrid">   
+                    <% blogs.forEach((blog)=>{ %>
+                        <li>
+                            <h1><a href="/blogs/:id"></a><%= blog.title %></h1>
+                            
+                            <small><%= blog.date %></small>
+                            <p><%= blog.content %></p>
+                            <small><%= blog.author %></small>
+    
+                            <div class="row">
+                                <form action="/blogs/edit/<%= blog.id %>" method="get">
+                                    <input type="submit" value="Edit" name="edit">
+                                </form>
+                                <form action="/api/blogs/delete/<%= blog.id %>" method="post">
+                                    <input type="submit" value="Delete" name="delete" id="delete">
+                                </form>
+                            </div>
+                            
+                            
+                        </li>                       
+                    <% }) %>
+                </div>     
+            </ul>
+         
+        </div>
+    </div>
+
+</body>
+</html>
