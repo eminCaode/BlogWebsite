@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emin's Blog Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
+
 </head>
 <body>
         <div class="firstPage">
         <div class="container leftSection">
             <h1>Write Your Own Blog</h1>
-            <ul>
+            <ol>
                 <li>Tickle the create button.</li>
                 <li>Fill information in the blank.</li>
                 <li>Write a comment what any topic you want.</li>
                 <li>Share the blog to the people.</li>
-            </ul>
+            </ol>
             <form action="/new" method="GET">
                 <input type="submit" value="Create">
             </form>
@@ -49,26 +53,24 @@
        
         <div class="container thirdSection col-xl-8">
            
-            <ul id="blogsList">
+            <ul id="blogsUl" style="text-decoration: none;">
                 <div class="forGrid">   
                     <% blogs.forEach((blog)=>{ %>
-                        <li>
+                        <li id="blogsList">
                             <h1><a href="/blogs/:id"></a><%= blog.title %></h1>
                             
                             <small><%= blog.date %></small>
-                            <p><%= blog.content %></p>
+                            <p id="blogContent"><%= blog.content %></p>
                             <small><%= blog.author %></small>
     
-                            <div class="row">
+                            <div class="row editanddelete">
                                 <form action="/blogs/edit/<%= blog.id %>" method="get">
                                     <input type="submit" value="Edit" name="edit">
                                 </form>
                                 <form action="/api/blogs/delete/<%= blog.id %>" method="post">
                                     <input type="submit" value="Delete" name="delete" id="delete">
                                 </form>
-                            </div>
-                            
-                            
+                            </div>  
                         </li>                       
                     <% }) %>
                 </div>     
